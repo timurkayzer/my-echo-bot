@@ -1,5 +1,5 @@
 const telegraf = require('telegraf')
-
+const request = require('request-promise')
 const key = '671670157:AAGsg6zep2t_ec5hNn7WSL-ZKr9860_lTZA'
 
 const bot = new telegraf(key)
@@ -33,3 +33,11 @@ bot.telegram.setWebhook(`${URL}/bot`).catch((err) => console.log(err));
 // Start https webhook
 bot.startWebhook('/bot', null, PORT)
 bot.webhookReply = false;
+
+setInterval(async ()=>{
+        await request({
+            uri:URL,
+            method:'GET'
+        })
+    },
+    60000)
